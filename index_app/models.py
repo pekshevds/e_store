@@ -17,6 +17,7 @@ class Directory(models.Model):
         abstract = True
         ordering = ["id"]
 
+
 class Document(models.Model):
 
     comment = models.CharField(verbose_name="Комментарий", max_length=1024, null=False, blank=True, default="")
@@ -26,7 +27,7 @@ class Document(models.Model):
     updated = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
 
     def __str__(self) -> str:
-        formated_date = datetime.strftime(self.date, "%m/%d/%Y")
+        formated_date = datetime.strftime(self.date, "%m.%d.%Y")
         return f'{self.id} от {formated_date}'
 
     class Meta:
