@@ -25,12 +25,12 @@ class Order(Document):
     status = models.CharField(verbose_name="Статус", max_length=12, choices=STATUS_CHOICES, default=CREATED,
                               null=True, blank=True)
     amount = models.DecimalField(verbose_name="Сумма", max_digits=15, decimal_places=2,
-                                 null=True, blank=True, default=0, editable=False)
+                                 null=True, blank=True, default=0)
     customer = models.ForeignKey(User, verbose_name="Заказчик", on_delete=models.PROTECT, null=True, blank=True)
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        self.amount = sum([item.amount for item in self.items.all()])
+        # super().save(*args, **kwargs)
+        # self.amount = sum([item.amount for item in self.items.all()])
         super().save(*args, **kwargs)
 
 

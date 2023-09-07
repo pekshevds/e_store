@@ -5,8 +5,8 @@ from datetime import datetime
 class Directory(models.Model):
 
     name = models.CharField(verbose_name="Наименование", max_length=150, null=False, blank=False, db_index=True)
-    comment = models.CharField(verbose_name="Комментарий", max_length=1024, null=False, blank=True, default="")
-    is_mark = models.BooleanField(verbose_name="Пометка", default=False)
+    comment = models.CharField(verbose_name="Комментарий", max_length=1024, null=True, blank=True, default="")
+    is_mark = models.BooleanField(verbose_name="Пометка", default=False, null=True)
     created = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
     updated = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
 
@@ -20,9 +20,9 @@ class Directory(models.Model):
 
 class Document(models.Model):
 
-    comment = models.CharField(verbose_name="Комментарий", max_length=1024, null=False, blank=True, default="")
-    is_mark = models.BooleanField(verbose_name="Пометка", default=False)
-    date = models.DateTimeField(verbose_name="Дата", default=datetime.now())
+    comment = models.CharField(verbose_name="Комментарий", max_length=1024, null=True, blank=True, default="")
+    is_mark = models.BooleanField(verbose_name="Пометка", default=False, null=True)
+    date = models.DateTimeField(verbose_name="Дата", default=datetime.now(), null=True)
     created = models.DateTimeField(verbose_name="Дата создания", auto_now_add=True)
     updated = models.DateTimeField(verbose_name="Дата изменения", auto_now=True)
 
