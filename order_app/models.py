@@ -6,10 +6,24 @@ from auth_app.models import User
 
 class Order(Document):
 
+    CREATED = "created"
+    PAID = "paid"
+    SHIPPED = "shipped"
+    CONFIRMED = "confirmed"
+
+    STATUS_CHOICES = [
+        (CREATED, "Создан"),
+        (PAID, "Оплачен"),
+        (SHIPPED, "Доставлен"),
+        (CONFIRMED, "Подтвержден"),
+    ]
+
     class Meta:
         verbose_name = "Заказ клиента"
         verbose_name_plural = "Заказы клиентов"
 
+    status = models.CharField(verbose_name="Статус", max_length=12, choices=STATUS_CHOICES, default=CREATED, 
+                              null=True, blank=True)
     amount = models.DecimalField(verbose_name="Сумма", max_digits=15, decimal_places=2,
                                  null=True, blank=True, default=0, editable=False)
     customer = models.ForeignKey(User, verbose_name="Заказчик", on_delete=models.PROTECT, null=True, blank=True)

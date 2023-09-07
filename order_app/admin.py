@@ -10,8 +10,8 @@ class OrderItemInLine(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ("id", "date", "customer", "comment", "amount",)
-    list_filter = ("customer",)
+    list_display = ("id", "date", "customer", "status", "comment", "amount",)
+    list_filter = ("status", "customer",)
     list_display_links = ("id", "date",)
     inlines = [OrderItemInLine]
 
