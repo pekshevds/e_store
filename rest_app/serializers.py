@@ -1,4 +1,5 @@
-from catalog_app.models import Category, Good
+from catalog_app.models import Category
+from catalog_app.models import Good
 from rest_framework import serializers
 
 
@@ -6,7 +7,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ['name', 'comment', 'is_mark', 'created', 'updated']
+        fields = ['id', 'name', 'comment', 'is_mark', 'created', 'updated']
 
 
 class GoodSerializer(serializers.ModelSerializer):
@@ -14,4 +15,4 @@ class GoodSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Good
-        fields = ['name', 'comment', 'is_mark', 'created', 'updated', 'category']
+        fields = ['id', 'name', 'comment', 'is_mark', 'created', 'updated', 'category']
