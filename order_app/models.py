@@ -22,7 +22,7 @@ class Order(Document):
         verbose_name = "Заказ клиента"
         verbose_name_plural = "Заказы клиентов"
 
-    status = models.CharField(verbose_name="Статус", max_length=12, choices=STATUS_CHOICES, default=CREATED, 
+    status = models.CharField(verbose_name="Статус", max_length=12, choices=STATUS_CHOICES, default=CREATED,
                               null=True, blank=True)
     amount = models.DecimalField(verbose_name="Сумма", max_digits=15, decimal_places=2,
                                  null=True, blank=True, default=0, editable=False)
