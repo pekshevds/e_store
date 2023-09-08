@@ -8,6 +8,10 @@ from order_app.models import OrderItem
 
 from auth_app.models import User
 
+from cart_app.models import CartItem
+
+from wish_app.models import WishItem
+
 
 class CategorySerializer(serializers.ModelSerializer):
 
@@ -29,16 +33,16 @@ class OrderItemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OrderItem
-        fields = ['good', 'qnt', 'price', 'amount']
+        fields = ['order', 'good', 'qnt', 'price', 'amount']
 
 
 class OrderSerializer(serializers.ModelSerializer):
-    items = OrderItemSerializer(many=True, read_only=True)
+    # items = OrderItemSerializer(many=True, read_only=True)
 
     class Meta:
         model = Order
         fields = ['id', 'date', 'comment', 'is_mark', 'created',
-                  'updated', 'amount', 'status', 'customer', 'items']
+                  'updated', 'amount', 'status', 'customer']
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -54,3 +58,17 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password("QWEqwe123")
         user.save()
         return user
+
+
+class CartItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CartItem
+        fields = ['customer', 'good', 'qnt']
+
+
+class WishItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = WishItem
+        fields = ['customer', 'good']
