@@ -20,6 +20,8 @@ router.register('users', UserViewSet)
 router.register('cart', CartItemViewSet)
 router.register('wish', WishItemViewSet)
 
+
+app_name = "api"
 urlpatterns = [
     path('v1/', include(router.urls)),
     path('auth/', include('rest_framework.urls', namespace='rest_framework')),
