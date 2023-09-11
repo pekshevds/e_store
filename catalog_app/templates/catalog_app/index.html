@@ -8,24 +8,24 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-2">
-					<div class="list-group">
-						<a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-						  The current link item
-						</a>
-						<a href="#" class="list-group-item list-group-item-action">A second link item</a>
-						<a href="#" class="list-group-item list-group-item-action">A third link item</a>
-						<a href="#" class="list-group-item list-group-item-action">A fourth link item</a>
-						<a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">A disabled link item</a>
-					  </div>
+					<div class="list-group">						
+						{% for category in categories %}
+							{% if category == current_category %}
+								<a href="{% url 'catalog:index-page' %}?category={{ category.id }}" class="list-group-item list-group-item-action active" aria-current="true">{{ category.name }}</a>
+							{% else %}
+								<a href="{% url 'catalog:index-page' %}?category={{ category.id }}" class="list-group-item list-group-item-action">{{ category.name }}</a>
+							{% endif %}
+						{% endfor %}				
+					</div>
 				</div>
 				<div class="col-10">
 					<div class="container">
 						<div class="row">
-							{% for item in items %}
+							{% for good in goods %}
 							<div class="col-4 col-sm-1 col-md-2 col-lg-4 col-xl32">
 								<div class="card" style="width: 18rem;">
 									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
+										<h5 class="card-title">{{ good.name }}</h5>
 										<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
 									</div>
 									<div class="card-body">
