@@ -5,6 +5,7 @@ from catalog_app.models import Category
 from catalog_app.models import Image
 
 
+@admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     list_display = ("id", "name", "preview",)
     list_display_links = ("id", "name",)
@@ -14,14 +15,12 @@ class ImageAdmin(admin.ModelAdmin):
         return mark_safe(f'<img src="{obj.image.url}" style="max-height: 50px;">')
 
 
-admin.site.register(Image, ImageAdmin)
-
-
+@admin.register(Good)
 class GoodAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "category", "preview",)
-    list_display_links = ("id", "name",)
+    list_display = ("id", "name", "category", "preview", "art",)
+    list_display_links = ("id", "name", "art",)
     list_filter = ("category",)
-    search_fields = ("name", )
+    search_fields = ("name", "art",)
 
     def preview(self, obj: Good) -> str:
         if obj.image:
@@ -29,13 +28,8 @@ class GoodAdmin(admin.ModelAdmin):
         return ""
 
 
-admin.site.register(Good, GoodAdmin)
-
-
+@admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "name", )
     list_display_links = ("id", "name", )
     search_fields = ("name", )
-
-
-admin.site.register(Category, CategoryAdmin)
