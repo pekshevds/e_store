@@ -9,11 +9,9 @@ class OrderItemInLine(admin.TabularInline):
     extra = 0
 
 
+@admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = ("id", "date", "customer", "status", "comment", "amount",)
     list_filter = ("status", "customer",)
     list_display_links = ("id", "date",)
     inlines = [OrderItemInLine]
-
-
-admin.site.register(Order, OrderAdmin)

@@ -1,3 +1,9 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
+from django.views import View
 
-# Create your views here.
+
+class Index(LoginRequiredMixin, View):
+
+    def get(self, request, *args, **kwargs):
+        return render(request=request, template_name="cart_app/index.html")

@@ -10,7 +10,7 @@ class Image(Directory):
         verbose_name_plural = "Изображения"
 
 
-class Category(Directory):    
+class Category(Directory):
     code_1c = models.CharField(verbose_name="Код 1С", max_length=11, null=True, blank=True, db_index=True)
 
     class Meta:

@@ -28,4 +28,10 @@ urlpatterns = [
     path('auth/', include(('auth_app.urls', 'auth'))),
     path('api/', include(('rest_app.urls', 'api'))),
     path('catalog/', include(('catalog_app.urls', 'catalog'))),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('cart/', include(('cart_app.urls', 'cart'))),
+    path('wish/', include(('wish_app.urls', 'wish'))),
+    path('order/', include(('order_app.urls', 'order'))),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

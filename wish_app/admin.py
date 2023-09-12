@@ -3,6 +3,7 @@ from django.contrib import admin
 from wish_app.models import WishItem
 
 
+@admin.register(WishItem)
 class WishItemAdmin(admin.ModelAdmin):
     list_display = ("id", "customer", "good", "added", "preview",)
     list_filter = ("customer",)
@@ -12,5 +13,3 @@ class WishItemAdmin(admin.ModelAdmin):
         if obj.good.image:
             return mark_safe(f'<img src="{obj.good.image.image.url}" style="max-height: 50px;">')
         return ""
-
-admin.site.register(WishItem, WishItemAdmin)

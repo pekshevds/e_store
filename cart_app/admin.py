@@ -3,6 +3,7 @@ from django.contrib import admin
 from cart_app.models import CartItem
 
 
+@admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
     list_display = ("id", "customer", "good", "qnt", "added", "preview",)
     list_filter = ("customer",)
@@ -12,5 +13,3 @@ class CartItemAdmin(admin.ModelAdmin):
         if obj.good.image:
             return mark_safe(f'<img src="{obj.good.image.image.url}" style="max-height: 50px;">')
         return ""
-
-admin.site.register(CartItem, CartItemAdmin)
