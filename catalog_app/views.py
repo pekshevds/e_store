@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.core.paginator import Paginator
 from django.views import View
 
 from catalog_app.models import Good
@@ -18,9 +19,21 @@ class Index(View):
             current_category = category
             goods = Good.objects.filter(category=category)
 
+        paginator = Paginator(goods, 27)
+        page_number = request.GET.get("page", 0)
+
+        route = ""
+        if current_category:
+            route += f"category={current_category.id}&"
+        route += "page="
+        if route:
+            route = "?" + route
+
         context = {
             'current_category': current_category,
             'categories': categories,
-            'goods': goods,
+            'goods': paginator.get_page(page_number),
+            'route': route,
+            'range': range(2, paginator.num_pages)
         }
         return render(request, template_name="catalog_app/index.html", context=context)
