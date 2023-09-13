@@ -44,6 +44,7 @@ class OrderViewSet(viewsets.ModelViewSet):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAdminUser]
 
+
 class OrderItemViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Order items to be viewed or edited.
